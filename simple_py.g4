@@ -1,8 +1,20 @@
 grammar simple_py;
 
-start: statement+ EOF;
+start: block EOF;
 
-statement: VAR ASSIGNMENT expression NEWLINE*;
+statement:  simple_statement
+            | if_statement;
+
+simple_statement: VAR ASSIGNMENT expression NEWLINE*;
+
+if_statement: IF expression ':' NEWLINE INDENT block (elif_clause)* (else_clause)?;
+
+elif_clause: ELIF expression ':' NEWLINE INDENT block;
+
+else_clause: ELSE ':' NEWLINE INDENT block;
+
+block: statement+ ;
+
 
 expression: literal 
             | VAR
