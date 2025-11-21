@@ -10,10 +10,9 @@ start: block EOF;
 //Statements and Blocks
 ///////////////////////
 
-statement:  simple_statement
-            | if_statement;
+statement:  (simple_statement|if_statement);
 
-simple_statement: VAR ASSIGNMENT expression NEWLINE*;
+simple_statement: VAR ASSIGNMENT expression NEWLINE+;
 
 if_statement: IF expression ':' NEWLINE innerBlock (elif_clause)* (else_clause)?;
 
@@ -61,9 +60,6 @@ array: '[' (expression (',' expression)*)? ']';
 //Tokens
 ///////////////////////
 
-VAR: [a-zA-Z_][a-zA-Z0-9_]*;
-ASSIGNMENT: '=' | '*=' | '/=' | '-=' | '+=';
-
 PLUS: '+';
 MINUS: '-';
 MUL: '*';
@@ -89,6 +85,9 @@ FLOAT: ([0-9]+'.'[0-9]+);
 INT: [0-9]+;
 BOOL: 'True' | 'False';
 STRING: '"' (~["\n])* '"' | '\'' (~['\n])* '\'';
+
+VAR: [a-zA-Z_][a-zA-Z0-9_]*;
+ASSIGNMENT: '+=' | '*=' | '/=' | '-=' | '=';
 
 INDENT: '\t';
 NEWLINE: '\n'+;
