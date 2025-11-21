@@ -45,21 +45,52 @@ mult: negation ((MUL|DIV|MOD) negation)*;
 negation: (NOT|MINUS) negation
           | root;
 
-root: literal 
-            | VAR
-            | expression ('*' | '/') expression 
-            | expression ('+' | '-' | '%') expression
-            | array;
+root:   literal 
+        | VAR
+        | array
+        | '(' expression ')';
+
+///////////////////////
+//Literals/Array
+///////////////////////
 
 literal: FLOAT | INT | BOOL | STRING;
 array: '[' (expression (',' expression)*)? ']';
 
+///////////////////////
+//Tokens
+///////////////////////
+
 VAR: [a-zA-Z_][a-zA-Z0-9_]*;
 ASSIGNMENT: '=' | '*=' | '/=' | '-=' | '+=';
+
+PLUS: '+';
+MINUS: '-';
+MUL: '*';
+DIV: '/';
+MOD: '%';
+
+GT: '>';
+LT: '<';
+GE: '>=';
+LE: '<=';
+EQ: '==';
+NEQ: '!=';
+
+AND: 'and';
+OR: 'or';
+NOT: 'not';
+
+IF: 'if';
+ELIF: 'elif';
+ELSE: 'else';
+
 FLOAT: ([0-9]+'.'[0-9]+);
 INT: [0-9]+;
 BOOL: 'True' | 'False';
 STRING: '"' (~["\n])* '"' | '\'' (~['\n])* '\'';
+
+INDENT: '\t';
 NEWLINE: '\n'+;
 
-WS: [ \t]+ -> skip;
+WS: [ ]+ -> skip;
