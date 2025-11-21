@@ -22,7 +22,7 @@ elif_clause: ELIF expression ':' NEWLINE innerBlock;
 else_clause: ELSE ':' NEWLINE innerBlock;
 
 block: statement+ ;
-innerBlock: (INDENT statement)+
+innerBlock: (INDENT statement)+ ;
 
 ///////////////////////
 //Expressions
@@ -30,20 +30,20 @@ innerBlock: (INDENT statement)+
 
 expression: log_or;
 
-log_or: log_and (OR log_and)*;
+log_or: log_and (OR log_and)* ;
 
-log_and: equality (AND equality)*
+log_and: equality (AND equality)* ;
 
-equality: comparison ((EQ | NEQ) comparison)*;
+equality: comparison ((EQ | NEQ) comparison)* ;
 
-comparison: addition ((GT|LT|GE|LE) addition)*;
+comparison: addition ((GT|LT|GE|LE) addition)* ;
 
-addition: mult ((PLUS|MINUS) mult)*;
+addition: mult ((PLUS|MINUS) mult)* ;
 
-mult: negation ((MUL|DIV|MOD) negation)*;
+mult: negation ((MUL|DIV|MOD) negation)* ;
 
 negation: (NOT|MINUS) negation
-          | root;
+          | root ;
 
 root:   literal 
         | VAR
