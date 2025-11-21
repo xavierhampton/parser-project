@@ -1,22 +1,51 @@
+///////////////////////
+//Grammar Start
+///////////////////////
+
 grammar simple_py;
 
 start: block EOF;
+
+///////////////////////
+//Statements and Blocks
+///////////////////////
 
 statement:  simple_statement
             | if_statement;
 
 simple_statement: VAR ASSIGNMENT expression NEWLINE*;
 
-if_statement: IF expression ':' NEWLINE INDENT block (elif_clause)* (else_clause)?;
+if_statement: IF expression ':' NEWLINE innerBlock (elif_clause)* (else_clause)?;
 
-elif_clause: ELIF expression ':' NEWLINE INDENT block;
+elif_clause: ELIF expression ':' NEWLINE innerBlock;
 
-else_clause: ELSE ':' NEWLINE INDENT block;
+else_clause: ELSE ':' NEWLINE innerBlock;
 
 block: statement+ ;
+innerBlock: (INDENT statement)+
 
+///////////////////////
+//Expressions
+///////////////////////
 
-expression: literal 
+expression: log_or;
+
+log_or: log_and (OR log_and)*;
+
+log_and: equality (AND equality)*
+
+equality: comparison ((EQ | NEQ) comparison)*;
+
+comparison: addition ((GT|LT|GE|LE) addition)*;
+
+addition: mult ((PLUS|MINUS) mult)*;
+
+mult: negation ((MUL|DIV|MOD) negation)*;
+
+negation: (NOT|MINUS) negation
+          | root;
+
+root: literal 
             | VAR
             | expression ('*' | '/') expression 
             | expression ('+' | '-' | '%') expression
