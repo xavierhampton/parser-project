@@ -12,7 +12,7 @@ start: block EOF;
 
 statement:  (simple_statement|if_statement);
 
-simple_statement: VAR ASSIGNMENT expression NEWLINE+;
+simple_statement: VAR ASSIGNMENT expression NEWLINE*;
 
 if_statement: IF expression ':' NEWLINE innerBlock (elif_clause)* (else_clause)?;
 
