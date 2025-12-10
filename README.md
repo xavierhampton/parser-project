@@ -28,7 +28,12 @@ The parser supports the following Python language features:
 - Single-line comments (`#`)
 - Multi-line comments (`'''...'''`)
 
+## Demo
+
+[Link to demo video]
+
 ## Requirements
+
 
 - Python 3.x
 - Java Runtime Environment (for ANTLR tool)
@@ -76,17 +81,6 @@ graphviz
    - The parse tree is printed to the console in parenthesized form
    - A PNG visualization is exported as `parse_tree.png`
 
-### Example
-
-```bash
-python main.py
-```
-
-Output:
-```
-(start (block (statement (simple_statement var1 = (expression ...) ...
-Parse tree exported as 'parse_tree.png'
-```
 
 ## Project Structure
 
@@ -94,14 +88,11 @@ Parse tree exported as 'parse_tree.png'
 parser-project/
 ├── simple_py.g4              # ANTLR grammar file
 ├── main.py                   # Main parser script
-├── simple_pyLexer.py         # Generated lexer
-├── simple_pyParser.py        # Generated parser
 ├── project_deliverable_1.py  # Test file for deliverable 1
 ├── project_deliverable_2.py  # Test file for deliverable 2
 ├── project_deliverable_3.py  # Test file for deliverable 3
+├── requirements.txt          # Python dependencies
+├── .gitignore
 └── README.md
 ```
 
-## Demo
-
-[Link to demo video]

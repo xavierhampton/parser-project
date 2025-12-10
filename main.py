@@ -53,4 +53,4 @@ def parse_file(file_path, output_png="parse_tree.png"):
 
 if __name__ == "__main__":
     target_file = "project_deliverable_3.py" 
-    parse_file(target_file, output_png="parse_tree.png")
+    parse_file(target_file, output_png="parse_tree")
