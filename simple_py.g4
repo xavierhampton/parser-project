@@ -106,6 +106,10 @@ IF: 'if';
 ELIF: 'elif';
 ELSE: 'else';
 
+WHILE: 'while';
+FOR: 'for';
+IN: 'in';
+
 FLOAT: ([0-9]+'.'[0-9]+);
 INT: [0-9]+;
 BOOL: 'True' | 'False';
@@ -117,4 +121,7 @@ ASSIGNMENT: '+=' | '*=' | '/=' | '-=' | '=';
 INDENT: '\t';
 NEWLINE: '\n'+;
 
+//Comments & Whitespace skipping
+LINE_COMMENT: '#' ~[\r\n]* -> skip;
+BLOCK_COMMENT: '\'\'\'' .*? '\'\'\'' -> skip;
 WS: [ ]+ -> skip;
