@@ -30,7 +30,7 @@ The parser supports the following Python language features:
 
 ## Demo
 
-[Link to demo video]
+[[Link to demo video]](https://youtu.be/-kRbdEsK6DI)
 
 ## Requirements
 
