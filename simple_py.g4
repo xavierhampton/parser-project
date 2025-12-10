@@ -10,18 +10,43 @@ start: block EOF;
 //Statements and Blocks
 ///////////////////////
 
-statement:  (simple_statement|if_statement);
+statement:     simple_statement
+                | if_statement
+                | while_statement
+                | for_statement;
 
 simple_statement: VAR ASSIGNMENT expression NEWLINE*;
 
+// If Statement
 if_statement: IF expression ':' NEWLINE innerBlock (elif_clause)* (else_clause)?;
 
 elif_clause: ELIF expression ':' NEWLINE innerBlock;
 
 else_clause: ELSE ':' NEWLINE innerBlock;
 
+///Loops
+//For Loop
+for_statement: FOR VAR IN iterable ':' NEWLINE innerBlock;
+
+//While Loop
+while_statement: WHILE '('? expression ')'? ':' NEWLINE innerBlock;
+///
+
+//Iterable
+iterable: VAR
+          | function;
+
+//Function 
+function: VAR '(' (expression (',' expression)*)? ')';
+
+//Blocks
 block: statement+ ;
-innerBlock: (INDENT statement)+ ;
+innerBlock: (INDENT+ (simple_statement | compound_block))+ ;
+
+compound_block: if_statement 
+                | while_statement
+                | for_statement ;
+
 
 ///////////////////////
 //Expressions
