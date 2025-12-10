@@ -1,1 +1,12 @@
 /venv
+__pycache__/
+
+# ANTLR generated files
+simple_pyLexer.py
+simple_pyParser.py
+simple_pyListener.py
+*.interp
+*.tokens
+
+# Output
+*.png
