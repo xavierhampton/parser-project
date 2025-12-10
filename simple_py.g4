@@ -20,9 +20,9 @@ simple_statement: VAR ASSIGNMENT expression NEWLINE*;
 // If Statement
 if_statement: IF expression ':' NEWLINE innerBlock (elif_clause)* (else_clause)?;
 
-elif_clause: ELIF expression ':' NEWLINE innerBlock;
+elif_clause: INDENT* ELIF expression ':' NEWLINE innerBlock;
 
-else_clause: ELSE ':' NEWLINE innerBlock;
+else_clause: INDENT* ELSE ':' NEWLINE innerBlock;
 
 ///Loops
 //For Loop
@@ -121,7 +121,7 @@ ASSIGNMENT: '+=' | '*=' | '/=' | '-=' | '=';
 INDENT: '\t';
 NEWLINE: '\n'+;
 
-//Comments & Whitespace skipping
+//Comments & Whitespace
 LINE_COMMENT: '#' ~[\r\n]* -> skip;
 BLOCK_COMMENT: '\'\'\'' .*? '\'\'\'' -> skip;
 WS: [ ]+ -> skip;
